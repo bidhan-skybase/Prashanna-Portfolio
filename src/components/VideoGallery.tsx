@@ -1,7 +1,9 @@
+"use client"
+
 import { motion } from "framer-motion";
 import { useVideoGallery, VideoData } from "../hooks/useVideoGallery";
 import { VideoModal } from "./VideoModal";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface VideoGalleryProps {
   title: string;
@@ -24,11 +26,18 @@ export const VideoGallery = ({ title, videos, sectionId = "works" }: VideoGaller
     getThumbnail
   } = useVideoGallery(videos);
 
-  // On mobile, show all videos; on desktop, use pagination
-  const displayedVideos = window.innerWidth < 768 ? videos : videos.slice(
+  // ✅ FIX - safe default, updates in browser
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768)
+  }, [])
+
+  const displayedVideos = isMobile ? videos : videos.slice(
     thumbnailStartIndex,
     thumbnailStartIndex + thumbnailsPerPage
   );
+
 
   return (
     <>
