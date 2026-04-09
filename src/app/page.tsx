@@ -8,41 +8,41 @@ import { VideoGallery } from "../components/VideoGallery";
 import { COMMERCIAL_VIDEOS, AFTER_MOVIE_VIDEOS } from "../constants/videoData";
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
+import Image from "next/image";
 
 
 const galleryImages = [
-  "https://prashannabajracharya.com/gallery_images/1.webp",
-  "https://prashannabajracharya.com/gallery_images/2.webp",
-  "https://prashannabajracharya.com/gallery_images/3.webp",
-  "https://prashannabajracharya.com/gallery_images/4.webp",
-  "https://prashannabajracharya.com/gallery_images/5.webp",
-  "https://prashannabajracharya.com/gallery_images/6.webp",
-  "https://prashannabajracharya.com/gallery_images/7.webp",
-  "https://prashannabajracharya.com/gallery_images/8.webp",
-  "https://prashannabajracharya.com/gallery_images/9.webp",
-  "https://prashannabajracharya.com/gallery_images/10.webp",
-  "https://prashannabajracharya.com/gallery_images/11.webp",
-  "https://prashannabajracharya.com/gallery_images/12.webp",
-  "https://prashannabajracharya.com/gallery_images/13.webp",
-  "https://prashannabajracharya.com/gallery_images/14.webp",
-  "https://prashannabajracharya.com/gallery_images/15.webp",
-  "https://prashannabajracharya.com/gallery_images/16.webp",
-  "https://prashannabajracharya.com/gallery_images/17.webp",
-  "https://prashannabajracharya.com/gallery_images/18.webp",
-  "https://prashannabajracharya.com/gallery_images/19.webp",
-  "https://prashannabajracharya.com/gallery_images/20.webp",
-  "https://prashannabajracharya.com/gallery_images/21.webp",
-  "https://prashannabajracharya.com/gallery_images/22.webp",
-  "https://prashannabajracharya.com/gallery_images/23.webp",
-  "https://prashannabajracharya.com/gallery_images/24.webp",
-  "https://prashannabajracharya.com/gallery_images/25.webp",
-  "https://prashannabajracharya.com/gallery_images/26.webp",
-  "https://prashannabajracharya.com/gallery_images/27.webp",
-  "https://prashannabajracharya.com/gallery_images/28.webp",
-  "https://prashannabajracharya.com/gallery_images/29.webp",
-  "https://prashannabajracharya.com/gallery_images/30.webp",
+  "/gallery/1.webp",
+  "/gallery/2.webp",
+  "/gallery/3.webp",
+  "/gallery/4.webp",
+  "/gallery/5.webp",
+  "/gallery/6.webp",
+  "/gallery/7.webp",
+  "/gallery/8.webp",
+  "/gallery/9.webp",
+  "/gallery/10.webp",
+  "/gallery/11.webp",
+  "/gallery/12.webp",
+  "/gallery/13.webp",
+  "/gallery/14.webp",
+  "/gallery/15.webp",
+  "/gallery/16.webp",
+  "/gallery/17.webp",
+  "/gallery/18.webp",
+  "/gallery/19.webp",
+  "/gallery/20.webp",
+  "/gallery/21.webp",
+  "/gallery/22.webp",
+  "/gallery/23.webp",
+  "/gallery/24.webp",
+  "/gallery/25.webp",
+  "/gallery/26.webp",
+  "/gallery/27.webp",
+  "/gallery/28.webp",
+  "/gallery/29.webp",
+  "/gallery/30.webp",
 ];
-
 
 
 const HeroSection = () => {
@@ -348,16 +348,17 @@ const PhotoGallery = ({
 }: {
   openModal: (imageArray: string[], index: number) => void;
 }) => {
-  // Helper function to handle modal opening
   const handleOpenModal = (src: string, alt: string) => {
     const imageIndex = galleryImages.findIndex((img) => img === src);
     openModal(galleryImages, imageIndex);
   };
 
+  const half = Math.ceil(galleryImages.length / 2);
+  const firstHalf = galleryImages.slice(0, half);
+  const secondHalf = galleryImages.slice(half);
+
   return (
     <section className="pt-0 bg-white overflow-hidden">
-      {/* Keep max-width only for the title */}
-
       <motion.h2
         className="text-3xl sm:text-4xl lg:text-6xl mb-6 sm:mb-8 lg:mb-10 text-center"
         style={{
@@ -372,9 +373,8 @@ const PhotoGallery = ({
         PHOTOS / BRANDS VISUALS
       </motion.h2>
 
-      {/* Full-width scroll containers */}
       <div className="w-full px-4 sm:px-8 lg:px-[5rem]">
-        {/* Mobile: Show only one row */}
+        {/* Mobile: single row with all images */}
         <div className="block sm:hidden">
           <InfiniteScrollRow
             images={galleryImages}
@@ -384,16 +384,16 @@ const PhotoGallery = ({
           />
         </div>
 
-        {/* Desktop: Show both rows */}
+        {/* Desktop: two rows with different halves */}
         <div className="hidden sm:block">
           <InfiniteScrollRow
-            images={galleryImages.slice(0, Math.ceil(galleryImages.length / 2))}
+            images={firstHalf}
             direction="ltr"
             openModal={handleOpenModal}
             isMobile={false}
           />
           <InfiniteScrollRow
-            images={galleryImages.slice(Math.ceil(galleryImages.length / 2))}
+            images={secondHalf}
             direction="rtl"
             openModal={handleOpenModal}
             isMobile={false}
@@ -902,6 +902,7 @@ export default function Index() {
     </div>
   );
 }
+
 const InfiniteScrollRow = ({
   images,
   direction,
@@ -919,7 +920,7 @@ const InfiniteScrollRow = ({
 
   useEffect(() => {
     images.forEach((img, index) => {
-      const image = new Image();
+      const image = new window.Image();
       image.src = img;
       image.onload = () => {
         const orientation =
@@ -932,13 +933,10 @@ const InfiniteScrollRow = ({
   const animationClass =
     direction === "ltr" ? "animate-scrollLtr" : "animate-scrollRtl";
 
-  // Function to get image size based on index pattern
-  const getImageSize = (index: number) => {
+  const getImageSizeClasses = (index: number) => {
     if (isMobile) {
       return "w-80 h-80 sm:w-40 sm:h-40";
     }
-
-    // Desktop: existing pattern
     const pattern = index % 3;
     if (pattern === 0) {
       return "w-60 h-60 md:w-80 md:h-60 lg:w-[40rem] lg:h-80";
@@ -954,16 +952,23 @@ const InfiniteScrollRow = ({
         style={{ width: "max-content" }}
       >
         {[...images, ...images, ...images].map((img, i) => (
-          <img
+          <div
             key={i}
-            src={`${img}?q=55`} // Lower quality for the default image
-            srcSet={`${img}?w=320&q=75 320w, ${img}?w=640&q=75 640w, ${img}?w=1280&q=75 1280w`}
-            sizes="(max-width: 640px) 320px, (max-width: 1024px) 640px, 1280px"
-            loading="lazy"
-            alt={`Photo ${i % images.length}`}
-            className={`${getImageSize(i)} ${orientations[i % images.length] === "portrait" ? "object-contain" : "object-cover"} mr-2 cursor-pointer flex-shrink-0 rounded-sm bg-black`}
+            className={`${getImageSizeClasses(i)} relative mr-2 flex-shrink-0 rounded-sm bg-black cursor-pointer`}
             onClick={() => openModal(img, `Photo ${i % images.length}`)}
-          />
+          >
+            <Image
+              src={img}
+              alt={`Photo ${i % images.length}`}
+              fill
+              sizes="(max-width: 640px) 320px, (max-width: 1024px) 240px, 640px"
+              loading="lazy"
+              className={`rounded-sm ${orientations[i % images.length] === "portrait"
+                  ? "object-contain"
+                  : "object-cover"
+                }`}
+            />
+          </div>
         ))}
       </div>
     </div>
