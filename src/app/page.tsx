@@ -238,35 +238,35 @@ const AboutSection = () => {
 const TrustedBySection = () => {
   const greenLogos = [
     {
-      src: "https://prashannabajracharya.com/trusted/image_11_ltvxgb.webp",
+      src: "/trusted/pepsi.webp",
       alt: "Pepsi Green",
     },
     {
-      src: "https://prashannabajracharya.com/trusted/image_12_tqzwry.webp",
+      src: "/trusted/skoda.webp",
       alt: "Skoda Green",
     },
     {
-      src: "https://prashannabajracharya.com/logos/tedx-green.png",
+      src: "/trusted/ted.webp",
       alt: "TEDx Green",
     },
     {
-      src: "https://prashannabajracharya.com/trusted/image_14_a6saxg.webp",
+      src: "/trusted/tuborg.webp",
       alt: "Tuborg Green",
     },
     {
-      src: "https://prashannabajracharya.com/trusted/image_15_lcfn07.webp",
+      src: "/trusted/adidas.webp",
       alt: "Adidas Green",
     },
     {
-      src: "https://prashannabajracharya.com/trusted/image_16_g2eqd8.webp",
+      src: "/trusted/unilever.webp",
       alt: "Unilever Green",
     },
     {
-      src: "https://prashannabajracharya.com/trusted/image_17_zcenzx.webp",
+      src: "/trusted/ucl.webp",
       alt: "Champions League Green",
     },
     {
-      src: "https://prashannabajracharya.com/trusted/image_18_acxlef.webp",
+      src: "/trusted/coke.webp",
       alt: "Coke Logo Green",
     },
   ];
