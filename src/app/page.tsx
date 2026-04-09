@@ -324,9 +324,11 @@ const TrustedBySection = () => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <img
+                  <Image
                     src={logo.src}
                     alt={logo.alt}
+                    width={128}
+                    height={128}
                     className="w-32 h-32 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"
                   />
                 </motion.div>
@@ -404,213 +406,62 @@ const PhotoGallery = ({
   );
 };
 
+
 const BrandsAndArtistsSection = () => {
-  // Consolidated logo data with special sizing rules
-  const logoData = [
-    // Row 1
-    [
-      {
-        src: "https://prashannabajracharya.com/logos/pepsi bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/pepsi c.webp",
-        alt: "Pepsi",
-        customSize: "w-16 h-16", // Reduced size
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/coke bnw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/coko color.webp",
-        alt: "Coca Cola",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/adidas bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/adidas c.webp",
-        alt: "Adidas",
-        customSize: "w-18 h-20", // Reduced size
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/Ueaf bnw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/uefa-c.webp",
-        alt: "Champions League",
-        customSize: "w-20 h-20", // Reduced size
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/tedx bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/tedx c.webp",
-        alt: "TEDx",
-      },
+const logoData = [
+  // Row 1
+  [
+    { src: "/logos/pepsi bw.png", hoverSrc: "/logos/pepsi c.png", alt: "Pepsi", customSize: "w-16 h-16" },
+    { src: "/logos/coke bnw.png", hoverSrc: "/logos/coko color.png", alt: "Coca Cola" },
+    { src: "/logos/adidas bw.png", hoverSrc: "/logos/adidas c.png", alt: "Adidas", customSize: "w-18 h-20" },
+    { src: "/logos/Ueaf bnw.png", hoverSrc: "/logos/uefa-c.png", alt: "Champions League", customSize: "w-20 h-20" },
+    { src: "/logos/tedx bw.png", hoverSrc: "/logos/tedx c.png", alt: "TEDx" },
+    { src: "/logos/expo bw.png", hoverSrc: "/logos/expo c.png", alt: "Expo City Dubai" },
+    { src: "/logos/yale bw.png", hoverSrc: "/logos/yale c.png", alt: "Yale University", customSize: "w-30 h-32" },
+  ],
+  // Row 2
+  [
+    { src: "/logos/Unilever bw.png", hoverSrc: "/logos/Unilever c.png", alt: "Unilever" },
+    { src: "/logos/samsung bw.png", hoverSrc: "/logos/samsung c.png", alt: "Samsung" },
+    { src: "/logos/tuborg bnw.png", hoverSrc: "/logos/tuborg c.png", alt: "Tuborg" },
+    { src: "/logos/coke_bw.png", hoverSrc: "/logos/coke.png", alt: "Coke Studio", customSize: "w-16 h-16" },
+    { src: "/logos/Lolla bw.png", hoverSrc: "/logos/lolla c.png", alt: "Lollapaloza", customSize: "w-28 h-32" },
+    { src: "/logos/titan bw.png", hoverSrc: "/logos/titan c.png", alt: "Titan" },
+    { src: "/logos/sios bw.png", hoverSrc: "/logos/sios c.png", alt: "SOS" },
+  ],
+  // Row 3
+  [
+    { src: "/logos/skoda bnw.png", hoverSrc: "/logos/skoda color.png", alt: "Skoda" },
+    { src: "/logos/yamaha bw.png", hoverSrc: "/logos/yamaha c.png", alt: "Yamaha" },
+    { src: "/logos/Changan bnw.png", hoverSrc: "/logos/Changan c.png", alt: "Changan", customSize: "w-32 h-32" },
+    { src: "/logos/foton bw.png", hoverSrc: "/logos/foton c.png", alt: "Foton" },
+    { src: "/logos/Seres bw.png", hoverSrc: "/logos/seres c.png", alt: "Seres", customSize: "w-16 h-16" },
+    { src: "/logos/niu bw.png", hoverSrc: "/logos/niu color.png", alt: "Niu" },
+    { src: "/logos/believe bnw.png", hoverSrc: "/logos/believe c.png", alt: "Believe" },
+  ],
+  // Row 4
+  [
+    { src: "/logos/ntb bw.png", hoverSrc: "/logos/ntb c.png", alt: "Nepal Tourism Board" },
+    { src: "/logos/kmg bw.png", hoverSrc: "/logos/kmg c.png", alt: "KMG", customSize: "w-16 h-16" },
+    { src: "/logos/MLN bw.png", hoverSrc: "/logos/mln.png", alt: "Mountain Lodge of Nepal" },
+    { src: "/logos/GB bnw.png", hoverSrc: "/logos/gb c.png", alt: "Gorkha Brewery", customSize: "w-32 h-32" },
+    { src: "/logos/Ruslan bw.png", hoverSrc: "/logos/Ruslan c.png", alt: "Ruslan" },
+    { src: "/logos/m4n bw.png", hoverSrc: "/logos/m4n c.png", alt: "Metal for Nepal" },
+    { src: "/logos/khalti bw.png", hoverSrc: "/logos/khalti bw c.png", alt: "Khalti" },
+  ],
+  // Row 5
+  [
+    { src: "/logos/michelin_bw.png", hoverSrc: "/logos/michelin.png", alt: "Michelin" },
+    { src: "/logos/dav bnw.png", hoverSrc: "/logos/dav c.png", alt: "DAV" },
+    { src: "/logos/cf bw.png", hoverSrc: "/logos/cf c.png", alt: "Crossfire", customSize: "w-32 h-32" },
+    { src: "/logos/yatri bw.png", hoverSrc: "/logos/yatri c.png", alt: "Yatri" },
+    { src: "/logos/jb_bw.png", hoverSrc: "/logos/jb.png", alt: "Janakpur Bolts" },
+  ],
+];
 
-      {
-        src: "https://prashannabajracharya.com/logos/expo bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/expo c.webp",
-        alt: "Expo City Dubai",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/yale bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/yale c.webp",
-        alt: "Yale University",
-        customSize: "w-30 h-32", // Increased size
-      },
-    ],
-    [
-      {
-        src: "https://prashannabajracharya.com/logos/Unilever bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/Unilever c.webp",
-        alt: "Unilever",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/samsung bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/samsung c.webp",
-        alt: "Samsung",
-      },
-
-      {
-        src: "https://prashannabajracharya.com/logos/tuborg bnw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/tuborg c.webp",
-        alt: "Tuborg",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/coke_bw.png",
-        hoverSrc: "https://prashannabajracharya.com/logos/coke.png",
-        alt: "Coke Studio",
-        customSize: "w-16 h-16",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/Lolla bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/lolla c.webp",
-        alt: "Lollapaloza",
-        customSize: "w-28 h-32", // Increased size
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/titan bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/titan c.webp",
-        alt: "Titan",
-      },
-
-      {
-        src: "https://prashannabajracharya.com/logos/sios bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/sios c.webp",
-        alt: "SOS",
-      },
-    ],
-    // Row 2
-    [
-
-      {
-        src: "https://prashannabajracharya.com/logos/skoda bnw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/skoda color.webp",
-        alt: "Skoda",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/yamaha bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/yamaha c.webp",
-        alt: "Yamaha",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/Changan bnw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/Changan c.webp",
-        customSize: "w-32 h-32",
-        alt: "Changan",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/foton bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/foton c.webp",
-        alt: "Foton",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/Seres bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/seres c.webp",
-        alt: "Seres",
-        customSize: "w-16 h-16", // Reduced size
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/niu bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/niu color.webp",
-        alt: "Niu",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/believe bnw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/believe c.webp",
-        alt: "Believe",
-      },
-
-    ],
-    // Row 3
-    [
-      {
-        src: "https://prashannabajracharya.com/logos/ntb bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/ntb c.webp",
-        alt: "Nepal Tourism Board",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/kmg bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/kmg c.webp",
-        alt: "KMG",
-        customSize: "w-16 h-16", // Reduced size
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/MLN bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/mln.webp",
-        alt: "Mountain Lodge of Nepal",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/GB bnw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/gb c.webp",
-        alt: "Gorkha Brewery",
-        customSize: "w-32 h-32", // Increased size
-      },
-
-      {
-        src: "https://prashannabajracharya.com/logos/Ruslan bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/Ruslan c.webp",
-        alt: "Ruslan",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/m4n bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/m4n c.webp",
-        alt: "Metal for Nepal",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/khalti bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/khalti bw c.webp",
-        alt: "Khalti",
-      },
-    ],
-    [
-      {
-        src: "https://prashannabajracharya.com/logos/michelin_bw.png",
-        hoverSrc: "https://prashannabajracharya.com/logos/michelin.png",
-        alt: "Michelin",
-      },
-
-      {
-        src: "https://prashannabajracharya.com/logos/dav bnw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/dav c.webp",
-        alt: "DAV",
-      },
-
-      {
-        src: "https://prashannabajracharya.com/logos/cf bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/cf c.webp",
-        alt: "Crossfire",
-        customSize: "w-32 h-32", // Increased size
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/yatri bw.webp",
-        hoverSrc: "https://prashannabajracharya.com/logos/yatri c.webp",
-        alt: "Yatri",
-      },
-      {
-        src: "https://prashannabajracharya.com/logos/jb_bw.png",
-        hoverSrc: "https://prashannabajracharya.com/logos/jb.png",
-        alt: "Janakpur Bolts",
-      },
-    ],
-  ];
-
-  // Flatten all logos into a single array for mobile display
   const allLogos = logoData.flat();
 
-  // Function to chunk logos into groups of 3 for mobile
-  const chunkLogosForMobile = (logos, chunkSize = 3) => {
+  const chunkLogosForMobile = (logos: typeof allLogos, chunkSize = 3) => {
     const chunks = [];
     for (let i = 0; i < logos.length; i += chunkSize) {
       chunks.push(logos.slice(i, i + chunkSize));
@@ -630,73 +481,76 @@ const BrandsAndArtistsSection = () => {
     visible: { opacity: 1, y: 0 },
   };
 
-  const LogoComponent = ({ logo, index }) => (
-    <motion.div
-      key={`${logo.alt}-${index}`}
-      className="flex items-center justify-center relative overflow-hidden group cursor-pointer"
-      variants={logoVariants}
-      transition={{ duration: 0.3, delay: 0.1 + (index % 3) * 0.1 }}
-      whileHover={{ scale: 1.1 }}
-    >
-      {/* Main image */}
-      <img
-        src={logo.src}
-        alt={logo.alt}
-        className={`object-contain transition-all duration-300 
-          ${logo.hoverSrc ? "group-hover:opacity-0" : ""}
-          filter grayscale group-hover:grayscale-0
-          ${logo.customSize ?
-            // Custom sizes for desktop - scale them down for better fit
-            logo.customSize.includes('w-30') || logo.customSize.includes('w-32') ?
-              'w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28' :
-              logo.customSize.includes('w-28') ?
-                'w-14 h-14 sm:w-18 sm:h-18 md:w-18 md:h-18 lg:w-22 lg:h-22 xl:w-24 xl:h-24' :
-                logo.customSize.includes('w-20') ?
-                  'w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20' :
-                  logo.customSize.includes('w-18') ?
-                    'w-12 h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-18 xl:h-18' :
-                    logo.customSize.includes('w-16') ?
-                      'w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16' :
-                      'w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20'
-            : 'w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20'
-          }
-        `}
-        loading="lazy"
-      />
+  const getSizeClasses = (customSize?: string) => {
+    if (!customSize)
+      return "w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20";
+    if (customSize.includes("w-30") || customSize.includes("w-32"))
+      return "w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28";
+    if (customSize.includes("w-28"))
+      return "w-14 h-14 sm:w-18 sm:h-18 md:w-18 md:h-18 lg:w-22 lg:h-22 xl:w-24 xl:h-24";
+    if (customSize.includes("w-20"))
+      return "w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20";
+    if (customSize.includes("w-18"))
+      return "w-12 h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-18 xl:h-18";
+    if (customSize.includes("w-16"))
+      return "w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16";
+    return "w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20";
+  };
 
-      {/* Hover image (if provided) */}
-      {logo.hoverSrc && (
-        <img
-          src={logo.hoverSrc}
-          alt={`${logo.alt} hover`}
-          className={`object-contain absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300
-            ${logo.customSize ?
-              // Custom sizes for desktop - scale them down for better fit
-              logo.customSize.includes('w-30') || logo.customSize.includes('w-32') ?
-                'w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28' :
-                logo.customSize.includes('w-28') ?
-                  'w-14 h-14 sm:w-18 sm:h-18 md:w-18 md:h-18 lg:w-22 lg:h-22 xl:w-24 xl:h-24' :
-                  logo.customSize.includes('w-20') ?
-                    'w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20' :
-                    logo.customSize.includes('w-18') ?
-                      'w-12 h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-18 xl:h-18' :
-                      logo.customSize.includes('w-16') ?
-                        'w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16' :
-                        'w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20'
-              : 'w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20'
-            }
-          `}
+  const LogoComponent = ({
+    logo,
+    index,
+  }: {
+    logo: (typeof allLogos)[0];
+    index: number;
+  }) => {
+    const sizeClasses = getSizeClasses(logo.customSize);
+
+    return (
+      <motion.div
+        className={`relative flex items-center justify-center group cursor-pointer flex-shrink-0 ${sizeClasses}`}
+        variants={logoVariants}
+        transition={{ duration: 0.3, delay: 0.1 + (index % 3) * 0.1 }}
+        whileHover={{ scale: 1.1 }}
+      >
+        <Image
+          src={logo.src}
+          alt={logo.alt}
+          fill
+          sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, (max-width: 1280px) 80px, 112px"
+          className={`object-contain transition-all duration-300 filter grayscale group-hover:grayscale-0 ${
+            logo.hoverSrc ? "group-hover:opacity-0" : ""
+          }`}
           loading="lazy"
         />
-      )}
-    </motion.div>
-  );
 
-  // Desktop layout component
-  const DesktopLogoGrid = ({ logos, rowIndex, isLastRow }) => (
+        {logo.hoverSrc && (
+          <Image
+            src={logo.hoverSrc}
+            alt={`${logo.alt} colour`}
+            fill
+            sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, (max-width: 1280px) 80px, 112px"
+            className="object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            loading="lazy"
+          />
+        )}
+      </motion.div>
+    );
+  };
+
+  const DesktopLogoGrid = ({
+    logos,
+    rowIndex,
+    isLastRow,
+  }: {
+    logos: (typeof allLogos);
+    rowIndex: number;
+    isLastRow: boolean;
+  }) => (
     <motion.div
-      className={`hidden md:flex justify-center items-center gap-6 lg:gap-12 xl:gap-20 flex-wrap ${isLastRow ? "" : "mb-8 lg:mb-12"
-        }`}
+      className={`hidden md:flex justify-center items-center gap-6 lg:gap-12 xl:gap-20 flex-wrap ${
+        isLastRow ? "" : "mb-8 lg:mb-12"
+      }`}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -709,14 +563,14 @@ const BrandsAndArtistsSection = () => {
     </motion.div>
   );
 
-  // Mobile layout component (3 items per row)
-  const MobileLogoGrid = ({ logoRows }) => (
+  const MobileLogoGrid = ({ logoRows }: { logoRows: (typeof allLogos)[] }) => (
     <div className="md:hidden">
       {logoRows.map((row, rowIndex) => (
         <motion.div
           key={`mobile-row-${rowIndex}`}
-          className={`grid grid-cols-3 gap-4 place-items-center ${rowIndex < logoRows.length - 1 ? "mb-6" : ""
-            }`}
+          className={`grid grid-cols-3 gap-4 place-items-center ${
+            rowIndex < logoRows.length - 1 ? "mb-6" : ""
+          }`}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -733,13 +587,11 @@ const BrandsAndArtistsSection = () => {
 
   return (
     <section
-      className=""
       style={{
         background: "linear-gradient(to bottom, white 132px, black 132px)",
       }}
     >
       <div className="max-w-full">
-        {/* Title */}
         <motion.h2
           className="text-3xl sm:text-4xl lg:text-6xl mb-8 sm:mb-12 lg:mb-16 text-center px-4"
           style={{
@@ -755,10 +607,8 @@ const BrandsAndArtistsSection = () => {
           BRANDS & ARTISTS
         </motion.h2>
 
-        {/* Black background section */}
         <div className="bg-black px-4 sm:px-6 md:px-8 lg:px-20 py-12 sm:py-16 lg:py-20">
           <div className="max-w-6xl mx-auto">
-            {/* Desktop Layout */}
             {logoData.map((row, rowIndex) => (
               <DesktopLogoGrid
                 key={`desktop-${rowIndex}`}
@@ -767,8 +617,6 @@ const BrandsAndArtistsSection = () => {
                 isLastRow={rowIndex === logoData.length - 1}
               />
             ))}
-
-            {/* Mobile Layout */}
             <MobileLogoGrid logoRows={mobileLogoRows} />
           </div>
         </div>
@@ -964,8 +812,8 @@ const InfiniteScrollRow = ({
               sizes="(max-width: 640px) 320px, (max-width: 1024px) 240px, 640px"
               loading="lazy"
               className={`rounded-sm ${orientations[i % images.length] === "portrait"
-                  ? "object-contain"
-                  : "object-cover"
+                ? "object-contain"
+                : "object-cover"
                 }`}
             />
           </div>
