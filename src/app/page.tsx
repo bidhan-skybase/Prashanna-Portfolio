@@ -414,7 +414,7 @@ const logoData = [
     { src: "/logos/pepsi bw.png", hoverSrc: "/logos/pepsi c.png", alt: "Pepsi", customSize: "w-16 h-16" },
     { src: "/logos/coke bnw.png", hoverSrc: "/logos/coko color.png", alt: "Coca Cola" },
     { src: "/logos/adidas bw.png", hoverSrc: "/logos/adidas c.png", alt: "Adidas", customSize: "w-18 h-20" },
-    { src: "/logos/Ueaf bnw.png", hoverSrc: "/logos/uefa-c.png", alt: "Champions League", customSize: "w-20 h-20" },
+    { src: "/logos/Ueaf bnw.png", hoverSrc: "/logos/Ueaf c.png", alt: "Champions League", customSize: "w-20 h-20" },
     { src: "/logos/tedx bw.png", hoverSrc: "/logos/tedx c.png", alt: "TEDx" },
     { src: "/logos/expo bw.png", hoverSrc: "/logos/expo c.png", alt: "Expo City Dubai" },
     { src: "/logos/yale bw.png", hoverSrc: "/logos/yale c.png", alt: "Yale University", customSize: "w-30 h-32" },
@@ -443,7 +443,7 @@ const logoData = [
   [
     { src: "/logos/ntb bw.png", hoverSrc: "/logos/ntb c.png", alt: "Nepal Tourism Board" },
     { src: "/logos/kmg bw.png", hoverSrc: "/logos/kmg c.png", alt: "KMG", customSize: "w-16 h-16" },
-    { src: "/logos/MLN bw.png", hoverSrc: "/logos/mln.png", alt: "Mountain Lodge of Nepal" },
+    { src: "/logos/MLN bw.png", hoverSrc: "/logos/MLN c.png", alt: "Mountain Lodge of Nepal" },
     { src: "/logos/GB bnw.png", hoverSrc: "/logos/gb c.png", alt: "Gorkha Brewery", customSize: "w-32 h-32" },
     { src: "/logos/Ruslan bw.png", hoverSrc: "/logos/Ruslan c.png", alt: "Ruslan" },
     { src: "/logos/m4n bw.png", hoverSrc: "/logos/m4n c.png", alt: "Metal for Nepal" },
