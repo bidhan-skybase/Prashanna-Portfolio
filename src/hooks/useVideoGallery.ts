@@ -6,7 +6,7 @@ export interface VideoData {
   id: string;
   platform: string;
   title?: string;
-  thumbnail?:string;
+  thumbnail?: string;
 }
 
 export const useVideoGallery = (videos: VideoData[]) => {
@@ -15,9 +15,14 @@ export const useVideoGallery = (videos: VideoData[]) => {
   const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
   const [hasNextBeenPressed, setHasNextBeenPressed] = useState(false);
   const [thumbnailsPerPage, setThumbnailsPerPage] = useState(
-    getThumbnailsPerPage(window.innerWidth)
+    getThumbnailsPerPage(1024)  // ← safe default for server
   );
   const [videoTitles, setVideoTitles] = useState<{ [key: string]: string }>({});
+
+
+  useEffect(() => {
+  setThumbnailsPerPage(getThumbnailsPerPage(window.innerWidth));
+}, []);
 
   // Fetch video titles
   useEffect(() => {
