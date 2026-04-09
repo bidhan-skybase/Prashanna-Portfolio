@@ -87,7 +87,7 @@ const HeroSection = () => {
           className="px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition duration-300"
           style={{ fontFamily: "Helvetica Neue" }}
         >
-          MORE WORK
+          MORE WORKS
         </button>
       </div>
     </section>
