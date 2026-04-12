@@ -72,3 +72,5 @@ const InfiniteScrollRow = ({
         </div>
     );
 };
+
+export default InfiniteScrollRow;

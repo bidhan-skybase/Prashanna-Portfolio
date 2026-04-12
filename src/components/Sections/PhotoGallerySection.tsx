@@ -1,5 +1,6 @@
 import {motion} from "framer-motion";
 import React from "react";
+import InfiniteScrollRow from "@/components/InfiniteScrolling";
 
 const galleryImages = [
     "/gallery/1.webp",
@@ -35,14 +36,6 @@ const galleryImages = [
 ];
 
 
-function InfiniteScrollRow(props: {
-    images: string[],
-    direction: string,
-    openModal: (src: string, alt: string) => void,
-    isMobile: boolean
-}) {
-    return null;
-}
 
 const PhotoGallery = ({
                           openModal,
