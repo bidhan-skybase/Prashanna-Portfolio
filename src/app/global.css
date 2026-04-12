@@ -163,12 +163,12 @@
 }
 
 .animate-scrollLtr {
-    animation: scrollLtr 40s linear infinite;
+    animation: scrollLtr 90s linear infinite;
     will-change: transform;
 }
 
 .animate-scrollRtl {
-    animation: scrollRtl 40s linear infinite;
+    animation: scrollRtl 90s linear infinite;
     will-change: transform;
 }
 
