@@ -38,7 +38,7 @@ const ArtistNamesSection = ({rows}: { rows: ArtistRow[] }) => {
     )
 }
 
-const formatName = (name: string) => name.replace(/\\n/g, '\n')
+const formatName = (name: string) => name.replace(/\\n/g, '\n').toUpperCase()
 
 
 export default ArtistNamesSection
