@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import NavigationWrapper from '@/components/NavigationWrapper'
-import Footer from '@/components/Footer'
+import Footer from '@/components/Sections/Footer'
 import './global.css'
 
 export const metadata: Metadata = {
