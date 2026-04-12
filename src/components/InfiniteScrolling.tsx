@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Image from "next/image";
 
 const InfiniteScrollRow = ({
@@ -12,22 +12,6 @@ const InfiniteScrollRow = ({
     openModal: (src: string, alt: string) => void;
     isMobile?: boolean;
 }) => {
-    const [orientations, setOrientations] = useState<{
-        [key: number]: "portrait" | "landscape";
-    }>({});
-
-    useEffect(() => {
-        images.forEach((img, index) => {
-            const image = new window.Image();
-            image.src = img;
-            image.onload = () => {
-                const orientation =
-                    image.naturalHeight > image.naturalWidth ? "portrait" : "landscape";
-                setOrientations((prev) => ({ ...prev, [index]: orientation }));
-            };
-        });
-    }, [images]);
-
     const animationClass =
         direction === "ltr" ? "animate-scrollLtr" : "animate-scrollRtl";
 
@@ -52,7 +36,7 @@ const InfiniteScrollRow = ({
                 {[...images, ...images, ...images].map((img, i) => (
                     <div
                         key={i}
-                        className={`${getImageSizeClasses(i)} relative mr-2 flex-shrink-0 rounded-sm bg-black cursor-pointer`}
+                        className={`${getImageSizeClasses(i)} relative mr-2 flex-shrink-0 rounded-sm cursor-pointer`}
                         onClick={() => openModal(img, `Photo ${i % images.length}`)}
                     >
                         <Image
@@ -61,10 +45,7 @@ const InfiniteScrollRow = ({
                             fill
                             sizes="(max-width: 640px) 320px, (max-width: 1024px) 240px, 640px"
                             loading="lazy"
-                            className={`rounded-sm ${orientations[i % images.length] === "portrait"
-                                ? "object-contain"
-                                : "object-cover"
-                            }`}
+                            className="rounded-sm object-cover"
                         />
                     </div>
                 ))}
