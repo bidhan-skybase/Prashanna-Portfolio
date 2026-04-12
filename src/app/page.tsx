@@ -7,6 +7,5 @@ export default async function Page() {
         client.fetch(brandRowsQuery),
         client.fetch(artistRowsQuery),
     ])
-
     return <ClientIndex brandRows={brandRows} artistRows={artistRows} />
 }

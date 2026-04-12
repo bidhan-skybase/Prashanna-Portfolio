@@ -1,10 +1,9 @@
-
 'use client'
 
-import { BrandRow, ArtistRow } from '@/lib/types'
+import {BrandRow, ArtistRow} from '@/lib/types'
 import HeroSection from "@/components/Sections/HeroSection";
 import TrustedBySection from './Sections/TrustedBySection';
-import { VideoGallery } from './VideoGallery';
+import {VideoGallery} from './VideoGallery';
 import {AFTER_MOVIE_VIDEOS, COMMERCIAL_VIDEOS} from "@/constants/videoData";
 import PhotoGallery from "@/components/Sections/PhotoGallerySection";
 import ArtistNamesSection from "@/components/Sections/ArtistNameSection";
@@ -17,19 +16,19 @@ interface Props {
     artistRows: ArtistRow[]
 }
 
-export default function ClientIndex({ brandRows, artistRows }: Props) {
-    const { isOpen, images, currentIndex, openModal, closeModal, navigateToImage } = useImageModal()
+export default function ClientIndex({brandRows, artistRows}: Props) {
+    const {isOpen, images, currentIndex, openModal, closeModal, navigateToImage} = useImageModal()
 
     return (
         <div className="bg-white">
-            <HeroSection />
-            <TrustedBySection />
-            <VideoGallery title="Commercials" videos={COMMERCIAL_VIDEOS} sectionId="commercials" />
-            <PhotoGallery openModal={openModal} />
-            <VideoGallery title="AFTER MOVIES" videos={AFTER_MOVIE_VIDEOS} sectionId="after-movies" />
-            <BrandsAndArtistsSection />
-            <ArtistNamesSection rows={artistRows} />
-            <AboutSection />
+            <HeroSection/>
+            <TrustedBySection/>
+            <VideoGallery title="Commercials" videos={COMMERCIAL_VIDEOS} sectionId="commercials"/>
+            <PhotoGallery openModal={openModal}/>
+            <VideoGallery title="AFTER MOVIES" videos={AFTER_MOVIE_VIDEOS} sectionId="after-movies"/>
+            <BrandsAndArtistsSection rows={brandRows}/> {/* ← confirm this is here */}
+            <ArtistNamesSection rows={artistRows}/>
+            <AboutSection/>
             <ImageModal
                 isOpen={isOpen}
                 onClose={closeModal}
