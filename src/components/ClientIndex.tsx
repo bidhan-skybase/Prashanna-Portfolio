@@ -16,9 +16,10 @@ interface Props {
     artistRows: ArtistRow[]
 }
 
+
 export default function ClientIndex({brandRows, artistRows}: Props) {
     const {isOpen, images, currentIndex, openModal, closeModal, navigateToImage} = useImageModal()
-
+    console.log(artistRows)
     return (
         <div className="bg-white">
             <HeroSection/>
