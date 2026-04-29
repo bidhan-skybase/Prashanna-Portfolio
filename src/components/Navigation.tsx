@@ -1,179 +1,173 @@
-"use client"  // ← must be first line, it uses hooks
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';           // ← replaces: import { Link } from 'react-router-dom'
-import { usePathname } from 'next/navigation';  // ← replaces: useLocation
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface NavigationProps {
   BgColor?: string;
 }
 
 const Navigation = ({ BgColor }: NavigationProps) => {
-  const pathname = usePathname();       // ← replaces: const location = useLocation()
+  const pathname = usePathname();
 
   const navItems = [
-    { name: 'HOME', path: '/' },
-    { name: 'ABOUT', path: '/#about' },
-    { name: 'WORKS', path: '/works' },
-    { name: 'CONTACT', path: '/#contact' },
+    { name: "ABOUT", path: "/#about" },
+    { name: "SERVICES", path: "/services" },
+    { name: "WORKS", path: "/works" },
+    { name: "CONTACT", path: "/#contact" },
   ];
 
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Scroll to top when route changes (but not for hash changes)
-  useEffect(() => {
-    if (!pathname.includes('#')) {      // ← replaces: location.hash
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
-  }, [pathname]);                       // ← replaces: location.pathname
-
+  /* ---------------- SCROLL EFFECT ---------------- */
   useEffect(() => {
     const handleScroll = () => {
       const heroHeight = window.innerHeight * 0.8;
       setScrolled(window.scrollY > heroHeight);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* ---------------- LOCK BODY SCROLL ---------------- */
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
   }, [isMenuOpen]);
 
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
-  const closeMenu = () => setIsMenuOpen(false);
-
-  const handleNavClick = (path: string) => {
-    closeMenu();
-
-    if (!path.startsWith('/#') && path !== pathname) {  // ← replaces: location.pathname
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'instant' });
-      }, 50);
-    }
-  };
+  const handleNavClick = () => setIsMenuOpen(false);
 
   return (
     <>
-      {/* NAVBAR */}
+      {/* ================= NAVBAR ================= */}
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           BgColor
-            ? ''
+            ? ""
             : scrolled
-              ? 'bg-portfolio-dark-green shadow-lg backdrop-blur-sm'
-              : 'bg-transparent'
+            ? "bg-portfolio-dark-green backdrop-blur-md shadow-lg"
+            : "bg-transparent"
         }`}
         style={{ backgroundColor: BgColor || undefined }}
       >
-        <div className="flex justify-between items-center px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 max-w-full">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link
-              href="/"                  // ← replaces: to="/"
-              onClick={() => handleNavClick('/')}
-              className="block"
-            >
-              <img
-                src="/untitled.png"
-                alt="Logo"
-                className="h-8 w-auto sm:h-10 md:h-12 max-w-full object-contain"
-              />
-            </Link>
+        <div className="max-w-8xl mx-auto px-6 py-5">
+
+          {/* ================= DESKTOP ================= */}
+          <div className="hidden md:grid grid-cols-5 items-center text-center">
+
+            {/* LEFT ITEMS */}
+            <LinkItem item={navItems[0]} onClick={handleNavClick} />
+            <LinkItem item={navItems[1]} onClick={handleNavClick} />
+
+            {/* CENTER LOGO */}
+            <div className="flex justify-center">
+              <Link href="/">
+                <img
+                  src="/untitled.png"
+                  alt="Logo"
+                  className="h-10 object-contain"
+                />
+              </Link>
+            </div>
+
+            {/* RIGHT ITEMS */}
+            <LinkItem item={navItems[2]} onClick={handleNavClick} />
+            <LinkItem item={navItems[3]} onClick={handleNavClick} />
+
           </div>
 
-          {/* Hamburger Button */}
-          <motion.button
-            className="text-white z-60 relative flex-shrink-0 p-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 rounded"
-            onClick={toggleMenu}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            <div className="w-5 h-5 sm:w-6 sm:h-6 flex flex-col justify-center items-center">
-              <motion.span className={`block w-full h-0.5 bg-white mb-1 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
-              <motion.span className={`block w-full h-0.5 bg-white mb-1 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
-              <motion.span className={`block w-full h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
-            </div>
-          </motion.button>
+          {/* ================= MOBILE ================= */}
+          <div className="flex md:hidden justify-between items-center">
+
+            <Link href="/">
+              <img src="/untitled.png" className="h-9" />
+            </Link>
+
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-white"
+            >
+              <div className="space-y-1">
+                <span
+                  className={`block w-6 h-[2px] bg-white transition ${
+                    isMenuOpen ? "rotate-45 translate-y-[6px]" : ""
+                  }`}
+                />
+                <span
+                  className={`block w-6 h-[2px] bg-white transition ${
+                    isMenuOpen ? "opacity-0" : ""
+                  }`}
+                />
+                <span
+                  className={`block w-6 h-[2px] bg-white transition ${
+                    isMenuOpen ? "-rotate-45 -translate-y-[6px]" : ""
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
         </div>
       </motion.nav>
 
-      {/* FULLSCREEN OVERLAY MENU */}
+      {/* ================= MOBILE MENU ================= */}
       <motion.div
-        className={`fixed inset-0 bg-portfolio-dark-green z-40 overflow-hidden ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
-        initial={{ opacity: 0 }}
+        className={`fixed inset-0 bg-portfolio-dark-green z-40 md:hidden flex flex-col justify-center items-center ${
+          isMenuOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
         animate={{ opacity: isMenuOpen ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="flex flex-col items-center justify-center h-full w-full px-4 sm:px-6 md:px-8">
-          <div className="flex flex-col items-center space-y-6 sm:space-y-8 md:space-y-10 w-full max-w-2xl">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                className="w-full text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: isMenuOpen ? 1 : 0, y: isMenuOpen ? 0 : 20 }}
-                transition={{ duration: 0.3, delay: isMenuOpen ? index * 0.1 : 0 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Link
-                  href={item.path}      // ← replaces: to={item.path}
-                  onClick={() => handleNavClick(item.path)}
-                  className="block w-full text-white hover:text-gray-300 transition-colors duration-300 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
-                  style={{ fontFamily: 'Staatliches', fontSize: 'clamp(2rem, 8vw, 4rem)', lineHeight: '1.1' }}
-                >
-                  {item.name}
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Close Button */}
-          <motion.button
-            onClick={closeMenu}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 text-white hover:text-gray-300 transition-colors duration-300 p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isMenuOpen ? 1 : 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            aria-label="Close menu"
+        {navItems.map((item, index) => (
+          <motion.div
+            key={item.name}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: isMenuOpen ? 1 : 0,
+              y: isMenuOpen ? 0 : 20,
+            }}
+            transition={{ delay: index * 0.1 }}
           >
-            <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </motion.button>
-        </div>
+            <Link
+              href={item.path}
+              onClick={handleNavClick}
+              className="text-white text-5xl block py-4"
+              style={{ fontFamily: "Staatliches" }}
+            >
+              {item.name}
+            </Link>
+          </motion.div>
+        ))}
       </motion.div>
-
-      {/* BACKDROP */}
-      {isMenuOpen && (
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30"
-          onClick={closeMenu}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        />
-      )}
     </>
   );
 };
+
+/* ================= NAV ITEM COMPONENT ================= */
+
+const LinkItem = ({
+  item,
+  onClick,
+}: {
+  item: { name: string; path: string };
+  onClick: () => void;
+}) => (
+  <Link
+    href={item.path}
+    onClick={onClick}
+    className="text-white hover:text-gray-300 transition"
+    style={{
+      fontFamily: "Staatliches",
+      letterSpacing: "0.05em",
+fontSize: "clamp(1.1rem, 1.5vw, 1.5rem)",    }}
+  >
+    {item.name}
+  </Link>
+);
 
 export default Navigation;
