@@ -13,8 +13,8 @@ const Navigation = ({ BgColor }: NavigationProps) => {
   const pathname = usePathname();
 
   const navItems = [
-    { name: "ABOUT", path: "/#about" },
-    { name: "SERVICES", path: "/services" },
+    { name: "ABOUT", path: "/#home" },
+    { name: "BRANDS", path: "/#brands" },
     { name: "WORKS", path: "/works" },
     { name: "CONTACT", path: "/#contact" },
   ];

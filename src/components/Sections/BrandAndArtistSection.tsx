@@ -137,6 +137,7 @@ const BrandsAndArtistsSection = ({rows}: { rows: BrandRow[] }) => {
 
     return (
         <section
+        id="brands"
             style={{
                 background: "linear-gradient(to bottom, white 132px, black 132px)",
             }}
